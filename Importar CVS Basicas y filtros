@@ -1,0 +1,54 @@
+
+import pandas as pd
+import numpy as np
+import matplotlib as plt ### luego shitf +enter para ejecutar, seleccionar de lista la version de python
+
+
+# %% [markdown]
+# ### importar archivo excel o csv
+
+# %%
+df_netflix= pd.read_csv("C:/netflix_titles.csv") # df es dataframe
+
+# %% [markdown]
+# ### Exploracion de Datos CSV
+
+# %%
+# mostrar las primeras filas del dataframe
+print("primeras filas del dataframe:")
+df_netflix.head() # head es una funcion que puedes indicarle cuantas fila devolver, por defecto devuelve 5
+
+# %%
+# Obtener informacion general de dataframe
+print("/Informacion del DataFrame:")
+df_netflix.info()
+
+# %%
+# descripcion estadistica de los datos numericos
+print("/Decripcion Estaditica:")
+df_netflix.describe()
+
+# %% [markdown]
+# ### Manipulacion y Filtrado de datos
+
+# %%
+# Selecccionar una columna espefica para el analisis
+columna_seleccionada ="release_year"
+print(f"/Analisis de la Columna '{columna_seleccionada}':") # las llaves rosa con alt+123
+print(df_netflix[columna_seleccionada].value_counts()) # el corchete rosa con Alt+91
+
+# %%
+# filtrar shows con country = united states y release_year mayor a  2005
+filtro_shows = (df_netflix['country']== 'United States') & (df_netflix['release_year'] > 2005) # los caracteres ==  significan equivalente, esta linea guarda las lineas en forma booleana 
+# para los registros que aplican conh true
+
+# Aplicar el filtro y crear un nuevo dataframe con los resultados
+df_netflix_filtrado = df_netflix[filtro_shows] 
+
+# mostrar los resultados
+print("shows de estados unidos cpn fecha de estreno posterior al 2005:")
+df_netflix_filtrado
+
+# %%
+
+
